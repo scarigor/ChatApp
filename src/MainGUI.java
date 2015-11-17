@@ -1,14 +1,12 @@
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
+
 import java.awt.SystemColor;
-import java.awt.TextField;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,35 +20,24 @@ import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.Component;
-import java.util.Date;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MainGUI {
 
-	private JFrame frameMain;
-	private JTextField textArea;
+	JFrame frameMain;
+	JTextField textArea;
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					MainGUI window = new MainGUI();
-					window.frameMain.setVisible(true);
-					System.out.println(window.frameMain.getSize());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
 	}
 
 	public MainGUI() {
 		initialize();
 	}
 
-	private void initialize() {
+	void initialize() {
 		Contacts frameCont = new Contacts();
 		frameCont.setVisible(false);
 
@@ -66,6 +53,8 @@ public class MainGUI {
 		frameMain.getContentPane().setLayout(null);
 
 		frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Панель логина
 
 		JPanel loginPanel = new JPanel();
 		loginPanel.setBorder(new LineBorder(SystemColor.activeCaption));
@@ -97,6 +86,8 @@ public class MainGUI {
 				.getColor("InternalFrame.activeTitleBackground"));
 		btnApply.setBounds(62, 77, 94, 23);
 		loginPanel.add(btnApply);
+
+		// Панель пользователя
 
 		JPanel remotePanel = new JPanel();
 		remotePanel.setBorder(new LineBorder(SystemColor.activeCaption));
@@ -166,6 +157,8 @@ public class MainGUI {
 		remoteLoginField.setColumns(10);
 		remotePanel.add(remoteLoginField);
 
+// Панель сообщений
+
 		JPanel messPanel = new JPanel();
 		messPanel.setBorder(null);
 		messPanel.setLayout(null);
@@ -186,7 +179,6 @@ public class MainGUI {
 
 		textArea = new JTextField();
 		textArea.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		textArea.setText("jhh");
 		textArea.setAlignmentX(Component.LEFT_ALIGNMENT);
 		textArea.setEditable(false);
 		textArea.setMargin(new Insets(290, 6, 2, 2));
@@ -202,6 +194,11 @@ public class MainGUI {
 		typingField.setColumns(10);
 
 		JButton btnSend = new JButton("Send");
+		btnSend.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+			}
+		});
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!typingField.getText().isEmpty()) {
