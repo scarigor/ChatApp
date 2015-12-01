@@ -1,9 +1,7 @@
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
 import java.awt.SystemColor;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +28,20 @@ public class MainGUI {
 	JTextField textArea;
 
 	public static void main(String[] args) {
-		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					MainGUI window = new MainGUI();
+					window.frameMain.setVisible(true);
+					System.out.println(window.frameMain.getSize());
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 	}
 
 	public MainGUI() {
